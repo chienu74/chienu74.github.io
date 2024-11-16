@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Viewer</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Viewer</h1>
+    <input id="urlInput" type="text" placeholder="Nhập URL cần hiển thị" />
+    <button id="loadButton">Tải Trang</button>
+    <iframe id="webFrame" src="" allowfullscreen></iframe>
+
+    <script>
+        const loadButton = document.getElementById('loadButton');
+        const urlInput = document.getElementById('urlInput');
+        const webFrame = document.getElementById('webFrame');
+
+        loadButton.addEventListener('click', () => {
+            const url = urlInput.value;
+            if (url) {
+                // Kiểm tra nếu URL không bắt đầu bằng http:// hoặc https://
+                if (!/^https?:\/\//i.test(url)) {
+                    alert('Vui lòng nhập URL hợp lệ (bắt đầu bằng http:// hoặc https://)');
+                    return;
+                }
+                webFrame.src = url;
+            } else {
+                alert('Vui lòng nhập URL.');
+            }
+        });
+    </script>
+</body>
+</html>
